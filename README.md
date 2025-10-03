@@ -18,17 +18,12 @@ This is a hybrid C++/Python project. The simulation environment is written in C+
    see the instructions
    [here](https://sylabs.io/singularity/) for installing SingularityCE. As a reference, we use version 3.11.1.
 
-1. **Download Boost:** From the root directory of the project, run the following to download the Boost 1.71, which is required for compiling C++ simulator. You don't have to install it on your system since it will be passed into the container and installed there.
 
-   ```
-   wget https://boostorg.jfrog.io/artifactory/main/release/1.71.0/source/boost_1_71_0.tar.gz --no-check-certificate
-   ```
-
-1. **Install CPLEX:** CPLEX is used for repairing the generated warehouse maps.
+2. **Install CPLEX:** CPLEX is used for repairing the generated warehouse maps.
 
    1. Download the free academic version [here](https://www.ibm.com/products/ilog-cplex-optimization-studio).
    2. Download the installation file for Linux.
-   3. Follow this [guide](https://www.ibm.com/docs/en/icos/12.10.0?topic=v12100-installing-cplex-optimization-studio) to install it. Basically:
+   3. Follow this [guide](https://www.ibm.com/docs/en/icos/22.1.0?topic=2210-installing-cplex-optimization-studio) to install it. Basically:
 
    ```
    chmod u+x INSTALLATION_FILE
@@ -37,15 +32,11 @@ This is a hybrid C++/Python project. The simulation environment is written in C+
 
    During installation, set the installation directory to `CPLEX_Studio2210/` in the repo.
 
-1. **Build Singularity container:** Run the provided script to build the container. Note that this need `sudo` permission on your system.
+3. **Build Singularity container:** Run the provided script to build the container. Note that this need `sudo` permission on your system.
    ```
    bash build_container.sh
    ```
    The script will first build a container as a sandbox, compile the C++ simulator, then convert that to a regular `.sif` Singularity container.
-
-### For user in mainland China
-
-If you are in mainland China, please use the corresponding `build_container_cn.sh` script to build the singularity container. It will use the local mirrors in China to download relevant packages (mainly debian and python), which is much faster.
 
 ### Troubleshooting
 
