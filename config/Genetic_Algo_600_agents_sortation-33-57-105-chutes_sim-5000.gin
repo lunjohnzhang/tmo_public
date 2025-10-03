@@ -1,0 +1,93 @@
+# Macros:
+# ======================================================================================================================
+measure_dim = 2
+sigma0 = 0.25
+# sol_size = 2051
+bounds = None
+package_mode = "dist"
+package_path = None
+package_dist_type = "721"
+n_destinations = 42
+base_map_path = "maps/sortation/sortation_33_57_105-chutes.json"
+
+# Parameters for MapElitesBaselineChuteMappingEmitter:
+# ======================================================================================================================
+MapElitesBaselineChuteMappingEmitter.batch_size = 100
+MapElitesBaselineChuteMappingEmitter.num_objects = %n_destinations
+MapElitesBaselineChuteMappingEmitter.initial_population = 100
+MapElitesBaselineChuteMappingEmitter.mutation_k = 10
+MapElitesBaselineChuteMappingEmitter.geometric_k = True
+MapElitesBaselineChuteMappingEmitter.base_map_path = %base_map_path
+
+# Parameters for experiment:
+# ======================================================================================================================
+experiment.name = 'Sortation-33-57-105-chutes GA PIBT 600 agents'
+
+# Parameters for GridArchive:
+# ======================================================================================================================
+GridArchive.dims = [1, 1]
+GridArchive.ranges = [[140, 240], [0, 0.05]]
+
+# Parameters for downsample/GridArchive:
+# ======================================================================================================================
+downsample/GridArchive.dims = [1, 1]
+downsample/GridArchive.ranges = [[140, 240], [0, 0.05]]
+# downsample/GridArchive.solution_dim = %sol_size
+
+# Parameters for Manager:
+# ======================================================================================================================
+Manager.archive_save_freq = -1
+Manager.archive_type = @GridArchive
+Manager.emitter_types = [(@MapElitesBaselineChuteMappingEmitter, 1)]
+Manager.env_manager_class = @WarehouseManager
+Manager.initial_sols = 100
+Manager.inner_itrs = 10000
+Manager.is_cma_mae = False
+Manager.search_algo = "classic"
+Manager.max_evals = 10000
+Manager.plot_metrics_freq = 1
+Manager.reload_save_freq = 1
+Manager.initial_mean = 0.5
+# Manager.sol_size = %sol_size
+
+
+# Parameters for WarehouseConfig:
+# ======================================================================================================================
+WarehouseConfig.scenario = "SORTING"
+WarehouseConfig.measure_names = ['n_shelf_components', 'tile_usage_std']
+
+WarehouseConfig.aggregation_type = 'mean'
+WarehouseConfig.obj_type = 'throughput'
+
+WarehouseConfig.left_w_weight = 1.0
+WarehouseConfig.right_w_weight = 1.0
+WarehouseConfig.simulation_time = 5000
+WarehouseConfig.num_agents = 600
+
+WarehouseConfig.bounds = %bounds
+WarehouseConfig.iter_update_max_iter = 5
+WarehouseConfig.iter_update_model_type = @WarehouseCNNUpdateModel
+WarehouseConfig.iter_update_n_sim = 1
+
+WarehouseConfig.n_destinations = %n_destinations
+WarehouseConfig.package_dist_type = %package_dist_type
+WarehouseConfig.package_mode = %package_mode
+WarehouseConfig.package_path = %package_path
+WarehouseConfig.use_warm_up = True
+WarehouseConfig.milp_time_limit = 150
+
+# Parameters for WarehouseManager:
+# ======================================================================================================================
+WarehouseManager.env_height = 33
+WarehouseManager.env_width = 57
+WarehouseManager.n_evals = 5
+WarehouseManager.w_mode = True
+WarehouseManager.simulation_algo = "PIBT"
+WarehouseManager.search_space = "chute_mapping"
+WarehouseManager.base_map_path = %base_map_path
+WarehouseManager.bounds = %bounds
+WarehouseManager.bound_handle = "transformation"
+WarehouseManager.n_destinations = %n_destinations
+WarehouseManager.package_dist_type = %package_dist_type
+WarehouseManager.package_mode = %package_mode
+WarehouseManager.package_path = %package_path
