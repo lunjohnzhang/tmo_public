@@ -1,6 +1,6 @@
 # Destination-to-Chutes Task Mapping Optimization for Multi-Robot Coordination in Robotic Sorting Systems
 
-This repository is the official implementation of **Destination-to-Chutes Task Mapping Optimization for Multi-Robot Coordination in Robotic Sorting Systems**. The repository builds on top of the repository of [Arbitrarily Scalable Environment Generators via Neural Cellular Automata](https://github.com/lunjohnzhang/warehouse_env_gen_nca_public).
+This repository is the official implementation of [**Destination-to-Chutes Task Mapping Optimization for Multi-Robot Coordination in Robotic Sorting Systems**](https://arxiv.org/abs/2510.03472), published in MRS 2025. The repository builds on top of the repository of [Arbitrarily Scalable Environment Generators via Neural Cellular Automata](https://github.com/lunjohnzhang/warehouse_env_gen_nca_public).
 
 ## Installation
 
